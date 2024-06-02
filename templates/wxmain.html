@@ -1,0 +1,63 @@
+{#wxmain.html#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闽江学院微信公众号数字文化资源管理平台</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        a.button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>闽江学院微信公众号数字文化资源管理平台</h1>
+        <p>欢迎使用闽江学院微信公众号数字文化资源管理平台。请选择以下操作：</p>
+        <a href="{% url 'login' %}" class="button">爬虫所用微信账号登录</a>
+        <a href="{% url 'wx_attrib_list' %}" class="button">公众号运营主体类别信息设置</a>
+        <a href="{% url 'wx_list_add' %}" class="button">公众号信息登记</a>
+        <a href="{% url 'wx_name_list' %}" class="button">公众号信息列表</a>
+        <a href="{% url 'wx_list_statistics' %}" class="button">公众号数据统计</a>
+        <a href="{% url 'wx_article_analyse' %}" class="button">公众号文章实体信息抽取</a>
+
+    </div>
+</body>
+</html>

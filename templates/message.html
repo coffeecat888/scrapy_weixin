@@ -1,0 +1,24 @@
+{#message.html#}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>caution</title>
+</head>
+
+<body>
+<div align="center"><img src="/static/mjulib.jpg" width="750" height="160" align="middle"  /></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><div align="center">{{ message }}&nbsp;</div></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<form id="form1" name="form1" method="post" action={{ action_ }}>
+    {% csrf_token %}
+    <div align="center"><input type="submit" name="submit" id="submit" value="返回"/></div>
+</form>
+<p>&nbsp;</p>
+
+</body>
+</html>

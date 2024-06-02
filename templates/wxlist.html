@@ -1,0 +1,109 @@
+{#wxlist.html#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信公众号列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light gray for even rows */
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff; /* White for odd rows */
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        form {
+            display: inline;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>闽江学院相关微信公众号列表</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>微信公众号运营主体</th>
+                <th>微信公众号中文名</th>
+                <th>微信公众号英文简称</th>
+                <th>微信公众号介绍</th>
+                <th>微信公众号faked</th>
+                <th>微信公众号图标</th>
+                <th>微信公众号发文量(已爬取量)</th>
+                <th>查看文章</th>
+                <th>爬取</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.wx_attribution }}</td>
+                <td>{{ data.nickname }}</td>
+                <td>{{ data.alias }}</td>
+                <td>{{ data.signature }}</td>
+                <td>{{ data.fakeid }}</td>
+                <td><img src="{{ data.imagepath }}" alt="{{ data.nickname }}"></td>
+                <td>{{ data.count}}</td>
+                <td>
+                    <form method="get" action="wx_article_list">
+                        {% csrf_token %}
+                        <input type="hidden" name="submitnickname2" value="{{ data.nickname }}">
+                        <input type="submit" value="查看该公众号文章">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="wx_article_crawl">
+                        {% csrf_token %}
+                        <input type="hidden" name="submitfakeid" value="{{ data.fakeid }}">
+                        <input type="hidden" name="submitnickname1" value="{{ data.nickname }}">
+                        <input type="submit" value="爬取该公众号">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="wx_list_add">
+        {% csrf_token %}
+        <input type="submit" value="新加入公众号">
+    </form>
+    <form method="post" action="wx_list_statistics">
+        {% csrf_token %}
+        <input type="submit" value="公众号数据统计">
+    </form>
+</body>
+</html>

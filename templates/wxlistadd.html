@@ -1,0 +1,76 @@
+{#wxlistadd.html#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信公众号爬取名单添加</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        strong {
+            font-size: 24px;
+        }
+        form {
+            width: 60%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+{#<div align="center"><img src="/static/mjulib.jpg" alt="Logo" width="750" height="160"></div>#}
+<p><strong>闽江学院微信公众号爬取名单添加</strong></p>
+
+{% if wxlistadd.errors %}
+    <p>数据出错啦，错误信息：{{ wxlistadd.errors }}.</p>
+{% else %}
+    <form action="wx_name_query" method="post">
+        {% csrf_token %}
+        <table>
+            {{ wxlistadd.as_table }}
+        </table>
+        <input type="submit" value="提交">
+    </form>
+{% endif %}
+
+<p>&nbsp;</p>
+</body>
+</html>
